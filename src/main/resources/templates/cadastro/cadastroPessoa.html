@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> <!-- NÃO FUNCIONA -->
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	<head>		
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
@@ -122,8 +122,8 @@
 						</div>
 					</div>
 					
-					<div class="row" sec:authorize="hasAnyRole('ROLE_GERENTE', 'ROLE_USER')"> <!-- NÃO FUNCIONA -->
-					<!--  <div class="row" sec:authorize="hasRole('ROLE_GERENTE')"> -->
+					<!-- <div class="row" sec:authorize="hasAnyRole('ROLE_GERENTE', 'ROLE_USER')"> <!-- NÃO FUNCIONA -->
+					<div class="row" sec:authorize="hasRole('ROLE_ADMIN')">
 						<div class="input-field col s6">
 							<label for="idade" class="active">Idade</label>
 							<input name="idade" th:field="*{idade}" id="idade" class="validate" />
@@ -134,8 +134,7 @@
 							<select class="browser-default" th:field="*{profissao}" id="profissao">
 								<option th:each="p : ${profissoes}" th:value="${p.id}" th:text="${p.nome}" />
 							</select>
-						</div>
-						
+						</div>						
 					</div>
 					
 					<div class="row">
