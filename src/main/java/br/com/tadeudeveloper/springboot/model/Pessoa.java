@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,16 +26,16 @@ public class Pessoa implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotNull(message = "Nome não pode ser nulo!")
-	@NotEmpty(message = "Nome não pode ser vazio!")
+	@NotNull(message = "Nome nï¿½o pode ser nulo!")
+	@NotEmpty(message = "Nome nï¿½o pode ser vazio!")
 	private String nome;
 
-	@NotNull(message = "Sobrenome não pode ser nulo!")
-	@NotEmpty(message = "Sobrenome não pode ser vazio!")
+	@NotNull(message = "Sobrenome nï¿½o pode ser nulo!")
+	@NotEmpty(message = "Sobrenome nï¿½o pode ser vazio!")
 	private String sobrenome;
 
-	@Min(value = 18, message = "Idade inválida, o valor deve ser entre 18 e 50!")
-	@Max(value = 50, message = "Idade inválida, o valor deve ser entre 18 e 50!")
+	@Min(value = 18, message = "Idade invï¿½lida, o valor deve ser entre 18 e 50!")
+	@Max(value = 50, message = "Idade invï¿½lida, o valor deve ser entre 18 e 50!")
 	private Integer idade;
 	
 	@ManyToOne
@@ -41,6 +43,9 @@ public class Pessoa implements Serializable {
 
 	@OneToMany(mappedBy = "pessoa", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Telefone> telefones;
+	
+	@Enumerated(EnumType.STRING)
+	private Cargo cargo;
 
 	private String sexo;
 
@@ -155,5 +160,13 @@ public class Pessoa implements Serializable {
 	public void setProfissao(Profissao profissao) {
 		this.profissao = profissao;
 	}
+	
+	public void setCargo(Cargo cargo) {
+		this.cargo = cargo;
+	}
+	
+	public Cargo getCargo() {
+		return cargo;
+	}	
 
 }

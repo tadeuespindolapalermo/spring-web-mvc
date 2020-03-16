@@ -80,6 +80,30 @@
 						</div>
 					</div>
 					
+					<!-- <div class="row" sec:authorize="hasAnyRole('ROLE_GERENTE', 'ROLE_USER')"> <!-- NÃO FUNCIONA -->
+					<div class="row" sec:authorize="hasRole('ROLE_ADMIN')">
+						<div class="input-field col s6">
+							<label for="idade" class="active">Idade</label>
+							<input name="idade" th:field="*{idade}" id="idade" class="validate" />
+						</div>
+						
+						<div class="input-field col s6">
+							<label for="profissao" class="active">Profissão</label>
+							<select class="browser-default" th:field="*{profissao}" id="profissao">
+								<option th:each="p : ${profissoes}" th:value="${p.id}" th:text="${p.nome}" />
+							</select>
+						</div>						
+					</div>
+					
+					<div class="row">
+						<div class="input-field col s12">
+							<label for="cargo" class="active">Cargo</label>
+							<select class="browser-default" th:field="*{cargo}" id="cargo">
+								<option th:each="c : ${T(br.com.tadeudeveloper.springboot.model.Cargo).values()}" th:value="${c.valor}" th:text="${c.nome}" />
+							</select>
+						</div>
+					</div>
+					
 					<div class="row">
 						<div class="input-field col s12">
 							<label for="cep" class="active">CEP</label>
@@ -120,22 +144,7 @@
 							<label for="ibge" class="active">IBGE</label>
 							<input name="ibge" th:field="*{ibge}" id="ibge" class="validate" />
 						</div>
-					</div>
-					
-					<!-- <div class="row" sec:authorize="hasAnyRole('ROLE_GERENTE', 'ROLE_USER')"> <!-- NÃO FUNCIONA -->
-					<div class="row" sec:authorize="hasRole('ROLE_ADMIN')">
-						<div class="input-field col s6">
-							<label for="idade" class="active">Idade</label>
-							<input name="idade" th:field="*{idade}" id="idade" class="validate" />
-						</div>
-						
-						<div class="input-field col s6">
-							<label for="profissao" class="active">Profissão</label>
-							<select class="browser-default" th:field="*{profissao}" id="profissao">
-								<option th:each="p : ${profissoes}" th:value="${p.id}" th:text="${p.nome}" />
-							</select>
-						</div>						
-					</div>
+					</div>					
 					
 					<div class="row">
 						<div class="input-field col s6">
