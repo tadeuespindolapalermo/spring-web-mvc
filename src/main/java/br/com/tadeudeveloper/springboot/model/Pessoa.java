@@ -11,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -57,6 +58,9 @@ public class Pessoa implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
+	
+	@Lob
+	private byte[] curriculo;
 
 	// VIA CEP
 	private String cep;
@@ -184,6 +188,14 @@ public class Pessoa implements Serializable {
 	
 	public Date getDataNascimento() {
 		return dataNascimento;
+	}
+	
+	public void setCurriculo(byte[] curriculo) {
+		this.curriculo = curriculo;
+	}
+	
+	public byte[] getCurriculo() {
+		return curriculo;
 	}
 
 }

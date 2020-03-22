@@ -56,7 +56,7 @@
 				</div>
 				<br />
 				
-				<form id="formPessoa" action="salvaPessoa" method="post" th:object="${pessoaObj}" class="col s12">	
+				<form id="formPessoa" action="salvaPessoa" method="post" th:object="${pessoaObj}" class="col s12" enctype="multipart/form-data">	
 					
 					<div class="row">				
 						<div class="input-field col s6">
@@ -109,6 +109,13 @@
 						<div class="input-field col s6">
 							<label for="dataNascimento" class="active">Data Nascimento</label>
 							<input type="date" id="dataNascimento" th:field="*{dataNascimento}" name="dataNascimento" placeholder="Data de Nascimento">
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="input-field col s12">
+							<label for="file" class="active">Currículo</label>
+							<input type="file" id="file" name="file" class="validate" />
 						</div>
 					</div>
 					
