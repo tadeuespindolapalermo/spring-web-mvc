@@ -201,10 +201,13 @@ public class PessoaController {
 		
 		Page<Pessoa> pessoas = null;
 		
-		if (sexoPesquisa != null && !sexoPesquisa.isEmpty()) {
+		if (sexoPesquisa != null && !sexoPesquisa.isEmpty() 
+				&& nomePesquisa != null && !nomePesquisa.isEmpty()) {
 			pessoas = pessoaRepository.findByNameSexoPage(nomePesquisa, sexoPesquisa, pageable);
-		} else {
+		} else if (nomePesquisa != null && !nomePesquisa.isEmpty()) {
 			pessoas = pessoaRepository.findByNamePage(nomePesquisa, pageable);
+		} else if (sexoPesquisa != null && !sexoPesquisa.isEmpty()) {
+			pessoas = pessoaRepository.findBySexoPage(sexoPesquisa, pageable);
 		}
 		
 		ModelAndView modelAndView = new ModelAndView("cadastro/cadastroPessoa");
