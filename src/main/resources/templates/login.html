@@ -26,30 +26,47 @@
         	form input[type=submit] {
         		color: white;
         	}
+        	
+        	form {
+        		margin-left: 35%;
+        		margin-top: 11%;
+        	}
+        	
+        	.col .row {
+        		margin-right: 0rem;
+        	}    
+        	
+        	input:-internal-autofill-selected {
+        		background-color: red !important;
+        		background-image: none !important;
+        		color: -internal-light-dark-color(black, white) !important;
+        	}    	        
         </style>
 	</head>
 	
 	<body>
-		<h1>Acesso ao sistema</h1>
 		
 		<form th:action="@{/login}" method="post" class="col s12">
+			<h5>Acesso ao sistema</h5>
 			<div class="row">
 				<div class="input-field col s6">
 					<label for="username" class="active">Login</label>
-					<input type="text" name="username" id="username" class="validate"/>
+					<input type="text" name="username" id="username" class="validate" 
+						style="border-radius: 12px; border-bottom: none"/>
 				</div>
 			</div>
 			
 			<div class="row">
 				<div class="input-field col s6">
 					<label for="password" class="active">Senha</label>
-					<input type="password" id="password" name="password" class="validate"/>
+					<input type="password" id="password" name="password" class="validate" 
+						style="border-radius: 12px; border-bottom: none"/>
 				</div>
 			</div>
 			
 			<div class="row">
 				<div class="input-field col s6">
-					<input name="logar" class="waves-effect waves-light btn" type="submit" value="Logar"/>
+					<input name="logar" class="waves-effect waves-light btn" type="submit" value="Acessar"/>
 				</div>
 			</div>
 			
