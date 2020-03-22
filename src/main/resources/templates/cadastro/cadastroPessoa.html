@@ -40,6 +40,18 @@
         	form input[type=submit] {
         		color: white;
         	}
+        	
+        	table {
+        		width: 100%;        		
+        	}
+        	
+        	table td, table th {
+        		border: 1px solid gray; 
+        	}
+        	
+        	table th {
+        		background: #eee;
+        	}
         </style>
 	</head>
 	<body>
@@ -170,7 +182,7 @@
 				</form>
 			</div>	
 		</fieldset>					
-		
+		<br><br>
 		<fieldset>
 			<legend>Campos de pesquisa</legend>
 			<div class="row">
@@ -178,7 +190,7 @@
 					<div class="row">					
 						<div class="input-field col s6">
 							<label for="nomePesquisa" class="active">Pesquisa por nome:</label>
-							<input name="nomePesquisa" id="nomePesquisa" class="validate"/>
+							<input name="nomePesquisa" id="nomePesquisa" class="validate" th:value="${nomePesquisa}" />
 						</div>						
 						<div class="input-field col s6">
 							<label for="sexoPesquisa" class="active">Pesquisa por sexo:</label>
@@ -200,7 +212,7 @@
 				</form>
 			</div>	
 		</fieldset>
-		
+		<br><br>
 		<table class="striped">		
 			<thead>
 				<tr>
@@ -213,7 +225,7 @@
 				</tr>		
 			</thead>
 			
-			<tr th:each = "pessoa : ${pessoas}">
+			<tr th:each = "pessoa : ${pessoas.content}">
 				<td th:text = "${pessoa.id}"></td>
 				<td><a th:href="@{/telefones/{idPessoa}(idPessoa=${pessoa.id})}"><span th:text = "${pessoa.nome}"></span></a></td>
 				<td th:text = "${pessoa.sobrenome}"></td>
@@ -225,6 +237,23 @@
 				<td><a th:href="@{/removerPessoa/{idPessoa}(idPessoa=${pessoa.id})}">Excluir</a></td>
 			</tr>			
 		</table>
+		
+		<!-- Paginação -->
+		<div class="row" style="margin-top: 30px;">		
+			<center>				
+				<span th:if="${pessoas.hasPrevious()}">
+					<a th:href="@{/pessoaspag(page=${pessoas.number - 1}, size=${pessoas.size}, nomePesquisa=${nomePesquisa})}">Anterior</a>
+				</span>
+			
+				<th:block th:each="i: ${#numbers.sequence(0, pessoas.totalPages -1)}">
+					<a th:href="@{/pessoaspag(page=${i}, size=${pessoas.size}, nomePesquisa=${nomePesquisa})}">[[ ${i} + 1 ]]</a>
+				</th:block>
+				
+				<span th:if="${pessoas.hasNext()}">
+					<a th:href="@{/pessoaspag(page=${pessoas.number + 1}, size=${pessoas.size}, nomePesquisa=${nomePesquisa})}">Próximo</a>
+				</span>
+			</center>
+		</div>
 		
 		<!--JavaScript at end of body for optimized loading-->
         <!-- <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
