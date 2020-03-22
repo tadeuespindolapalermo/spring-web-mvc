@@ -108,14 +108,14 @@
 						</div>
 						<div class="input-field col s6">
 							<label for="dataNascimento" class="active">Data Nascimento</label>
-							<input type="date" id="dataNascimento" th:field="*{dataNascimento}" name="dataNascimento" placeholder="Data de Nascimento">
+							<input type="date" id="dataNascimento" th:field="*{dataNascimento}" name="dataNascimento" placeholder="Data de Nascimento" />
 						</div>
 					</div>
 					
 					<div class="row">
 						<div class="input-field col s12">
 							<label for="file" class="active">Currículo</label>
-							<input type="file" id="file" name="file" class="validate" />
+							<input type="file" id="file" name="file" class="file-field input-field" />
 						</div>
 					</div>
 					
@@ -207,7 +207,7 @@
 					<th>ID</th>
 					<th>Nome</th>
 					<th>Sobrenome</th>
-					<th>Idade</th>
+					<th>Currículo</th>
 					<th>Editar</th>
 					<th>Excluir</th>
 				</tr>		
@@ -217,7 +217,10 @@
 				<td th:text = "${pessoa.id}"></td>
 				<td><a th:href="@{/telefones/{idPessoa}(idPessoa=${pessoa.id})}"><span th:text = "${pessoa.nome}"></span></a></td>
 				<td th:text = "${pessoa.sobrenome}"></td>
-				<td th:text = "${pessoa.idade}"></td>
+				<td>
+					<a th:if="${pessoa.curriculo != null}" th:href="@{/baixarCurriculo/{idPessoa}(idPessoa=${pessoa.id})}">Download</a>
+					<a th:if="${pessoa.curriculo == null}" style="color: red;">Não existe</a>
+				</td>
 				<td><a th:href="@{/editarPessoa/{idPessoa}(idPessoa=${pessoa.id})}">Editar</a></td>
 				<td><a th:href="@{/removerPessoa/{idPessoa}(idPessoa=${pessoa.id})}">Excluir</a></td>
 			</tr>			

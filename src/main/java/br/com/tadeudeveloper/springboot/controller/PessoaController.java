@@ -159,6 +159,24 @@ public class PessoaController {
 		return modelAndView;
 	}
 	
+	@GetMapping("**/baixarCurriculo/{idPessoa}")
+	public void baixarCurriculo(@PathVariable("idPessoa") Long idPessoa, HttpServletResponse response) throws IOException {
+		
+		Pessoa pessoa = pessoaRepository.findById(idPessoa).get();
+		
+		if (pessoa.getCurriculo() != null) {
+			response.setContentLengthLong(pessoa.getCurriculo().length);
+			response.setContentType(pessoa.getTipoFileCurriculo()); // Genérico: application/octet-stream
+			
+			String headerKey = "Content-Disposition";
+			String headerValue = String.format("attachment; filename=\"%s\"", pessoa.getNomeFileCurriculo());
+			response.setHeader(headerKey, headerValue);
+			
+			response.getOutputStream().write(pessoa.getCurriculo());			
+		}
+		
+	}
+	
 	@PostMapping("**/pesquisarPessoa")
 	public ModelAndView pesquisar(
 			@RequestParam("nomePesquisa") String nomePesquisa,
