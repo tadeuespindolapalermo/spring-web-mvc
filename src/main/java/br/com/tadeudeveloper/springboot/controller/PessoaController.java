@@ -78,12 +78,17 @@ public class PessoaController {
 			return modelAndView;
 		}
 		
+		// Upload Currículo
 		if (file.getSize() > 0) {
 			pessoa.setCurriculo(file.getBytes());
+			pessoa.setTipoFileCurriculo(file.getContentType());
+			pessoa.setNomeFileCurriculo(file.getOriginalFilename());
 		} else {
 			if (pessoa.getId() != null && pessoa.getId() > 0) {
-				byte[] curriculoTemp = pessoaRepository.findById(pessoa.getId()).get().getCurriculo();
-				pessoa.setCurriculo(curriculoTemp);
+				Pessoa pessoaTemp = pessoaRepository.findById(pessoa.getId()).get();
+				pessoa.setCurriculo(pessoaTemp.getCurriculo());
+				pessoa.setTipoFileCurriculo(pessoaTemp.getTipoFileCurriculo());
+				pessoa.setNomeFileCurriculo(pessoaTemp.getNomeFileCurriculo());
 			}
 		}
 		
