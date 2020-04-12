@@ -25,6 +25,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 		  .authorizeRequests() // Permite restringir acesso
 		  .antMatchers(HttpMethod.GET, "/").permitAll() // Qualquer usuário acessa a página inicial
 		  .antMatchers(HttpMethod.GET, "/cadastroPessoa").hasAnyRole("ADMIN")
+		  //.antMatchers("/materialize/").permitAll()
 		  .anyRequest().authenticated()
 		  .and().formLogin().permitAll() // permite qualquer usuário
 		  .loginPage("/login") // página de login
